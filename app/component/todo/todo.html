@@ -1,0 +1,7 @@
+<div class="container">
+  <ul>
+    <li ng-repeat="(index,t) in $ctrl.todos" ng-class="t.status?'completed':''">
+      {{t.task}}, {{index}}<span ng-click="$ctrl.toggle(index)"><input type="checkbox"></span>
+    </li>
+  </ul>
+</div>

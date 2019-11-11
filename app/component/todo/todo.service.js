@@ -7,7 +7,10 @@ angular.module("todoApp").service("todoService", function($http) {
    *
    * remove particular task from list
    */
-  this.removeTodo = function(id) {};
+  this.removeTodo = function(id) {
+    console.log(id);
+    return $http.delete(`http://localhost:3000/todos/${id}`);
+  };
 
   /**
    *  @param {object} formData data of new task

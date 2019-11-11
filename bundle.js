@@ -15,28 +15,38 @@ function todoController(todoService) {
   self.inputEmpty = false;
   self.loading = true;
   self.todo = "";
+
+  /**
+   * Fetch all todos
+   */
   todoService.getTodos().then(function(response) {
     self.loading = false;
     self.todos = response.data;
   });
 
-  self.toggle = function(index) {
-    console.log(index);
-  };
-
+  /**
+   * add new todo
+   */
   self.addTodo = function() {
     console.log(self.todo);
     if (self.todo) {
       self.inputEmpty = false;
-      self.todos.push({ task: self.todo, status: false });
+      self.todos.push({ task: self.todo, isCompleted: false });
       self.todo = "";
     } else {
       self.inputEmpty = true;
     }
   };
 
+  /**
+   * remove todo of particular id
+   */
   self.removeTodo = function(id) {
     self.todos.splice(id, 1);
+  };
+
+  self.taskCompleted = function(id) {
+    self.todos[id].isCompleted = !self.todos[id].isCompleted;
   };
 }
 angular.module("todoApp").service("todoService", function($http) {
@@ -46,9 +56,12 @@ angular.module("todoApp").service("todoService", function($http) {
   /**
    * @param {number} id id of task to be removed
    *
-   * remove the task from list
+   * remove particular task from list
    */
-  this.removeTodo = function(id) {};
+  this.removeTodo = function(id) {
+    console.log(id);
+    return $http.delete(`http://localhost:3000/todos/${id}`);
+  };
 
   /**
    *  @param {object} formData data of new task

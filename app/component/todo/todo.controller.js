@@ -20,7 +20,7 @@ function todoController(todoService) {
     console.log(self.todo);
     if (self.todo) {
       self.inputEmpty = false;
-      self.todos.push({ task: self.todo, status: false });
+      self.todos.push({ task: self.todo, isCompleted: false });
       self.todo = "";
     } else {
       self.inputEmpty = true;
@@ -32,5 +32,14 @@ function todoController(todoService) {
    */
   self.removeTodo = function(id) {
     self.todos.splice(id, 1);
+  };
+
+  /**
+   * @param {number} id
+   *
+   * mark the task completed
+   */
+  self.taskCompleted = function(id) {
+    self.todos[id].isCompleted = !self.todos[id].isCompleted;
   };
 }

@@ -1,5 +1,6 @@
 <div class="container">
   <br>
+  <!-- input component -->
   <div class="columns">
     <div class="column">
       <label for="input">Add new Task</label>
@@ -13,6 +14,8 @@
       <button class="button is-primary " ng-click="$ctrl.addTodo()" id="add"> Add</button>
     </div>
   </div>
+
+  <!-- todo table  -->
   <div ng-if="$ctrl.loading">
     <h1>Loading please wait.....</h1>
   </div>
@@ -21,7 +24,7 @@
       <thead class="has-background-primary">
         <tr>
           <th>Task</th>
-          <th>Statuss</th>
+          <th>Status</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -31,7 +34,8 @@
           <td>{{t.isCompleted?'Completed':'Not Completed'}}</td>
           <td>
             <button class="button is-danger" ng-click="$ctrl.removeTodo(index)">Delete</button>
-            <button class="button">Action</button>
+            <button class="button"
+              ng-click="$ctrl.taskCompleted(index)">{{t.isCompleted?'Not Completed':'Completed'}}</button>
           </td>
         </tr>
       </tbody>

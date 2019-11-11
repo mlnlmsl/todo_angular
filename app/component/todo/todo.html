@@ -1,7 +1,40 @@
 <div class="container">
-  <ul>
-    <li ng-repeat="(index,t) in $ctrl.todos" ng-class="t.status?'completed':''">
-      {{t.task}}, {{index}}<span ng-click="$ctrl.toggle(index)"><input type="checkbox"></span>
-    </li>
-  </ul>
+  <br>
+  <div class="columns">
+    <div class="column">
+      <label for="input">Add new Task</label>
+      <input type="text" ng-model="$ctrl.todo" class="input" required>
+      <span class="has-text-danger" ng-show="$ctrl.inputEmpty">
+        You are about to do nothing!!!
+      </span>
+    </div>
+    <div class="column">
+      <label for="add" style="display: block;">&nbsp</label>
+      <button class="button is-primary " ng-click="$ctrl.addTodo()" id="add"> Add</button>
+    </div>
+  </div>
+  <div ng-if="$ctrl.loading">
+    <h1>Loading please wait.....</h1>
+  </div>
+  <div ng-if="!$ctrl.loading">
+    <table class="table is-hoverable is-fullwidth table-head-background-color">
+      <thead class="has-background-primary">
+        <tr>
+          <th>Task</th>
+          <th>Statuss</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(index,t) in $ctrl.todos">
+          <td>{{t.task}}</td>
+          <td>{{t.isCompleted?'Completed':'Not Completed'}}</td>
+          <td>
+            <button class="button is-danger" ng-click="$ctrl.removeTodo(index)">Delete</button>
+            <button class="button">Action</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

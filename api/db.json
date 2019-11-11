@@ -1,0 +1,18 @@
+{
+  "todos": [{
+      "id": 1,
+      "task": "create server",
+      "isCompleted": false
+    },
+    {
+      "id": 2,
+      "task": "fetch data",
+      "isCompleted": false
+    },
+    {
+      "id": 3,
+      "task": "display data",
+      "isCompleted": false
+    }
+  ]
+}
